@@ -21,6 +21,10 @@ dependencies:
   flame: ^1.32.0
   audioplayers: ^6.0.0
   video_player: ^2.9.2
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
+  animated_text_kit: ^4.2.2
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -34,10 +38,26 @@ flutter:
   uses-material-design: true
 
   assets:
+    # Game Assets
+    - assets/APP ICON.png
+    - assets/SPLASH SCREEN.png
+    - assets/buttons/water_plant_btn.png
+    - assets/buttons/clear_plant_btn.png
+    - assets/hud/day_indicator.png
+    - assets/hud/DEFAULT PLACEHOLDER.png
+
     # Game Character Assets
     - assets/images/sunflower.png
     - assets/images/background/sample.jpg
     - assets/images/background/sunflower_bg.png
+
+    # Cactus Character Assets
+    - assets/images/cactus/cactus_moving.gif
+
+    # Cactus Background Assets
+    - assets/images/cactus/Cactus (Background).png
+    - assets/images/background/water_minigame_bg.png
+    - assets/splash/SPLASH MINI GAME.png
 
     # Mini Game Character Animation Assets
     - assets/images/games/raincatcher.png
@@ -48,10 +68,19 @@ flutter:
     - assets/images/games/GAME OVER.png
     - assets/images/games/GAME COMPLETED.png
     - assets/images/games/proceed.png
-    - assets/images/games/WATER METER.png
     - assets/images/games/moving_bg.mp4
+
+    # Status Bar Hud
+    - assets/bars/WATER METER.png
+    - assets/bars/HEALTH METER.png
 
     # Mini Game Audio Assets
     - assets/sfx/acid_catch.mp3
     - assets/sfx/water_catch.mp3
     - assets/sfx/water_mini_game_bg.mp3
+    - assets/sfx/achieved.ogg
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/APP ICON.png"

@@ -28,15 +28,14 @@ class AssetsManager {
         Image.asset('assets/images/games/goodheart.png', width: 32, height: 32);
     retryImage = Image.asset('assets/images/games/retrybutton.png',
         width: 60, height: 60);
-    waterMeterImage =
-        Image.asset('assets/images/games/WATER METER.png', height: 300);
+    waterMeterImage = Image.asset('assets/bars/WATER METER.png', height: 300);
     completedImage =
         Image.asset('assets/images/games/GAME COMPLETED.png', width: 300);
     proceedImage = Image.asset('assets/images/games/proceed.png', width: 80);
     gameOverImage =
         Image.asset('assets/images/games/GAME OVER.png', width: 300);
     backgroundImage = Image.asset(
-      'assets/images/background/sunflower_bg.png',
+      'assets/images/background/water_minigame_bg.png',
       fit: BoxFit.cover,
     );
 

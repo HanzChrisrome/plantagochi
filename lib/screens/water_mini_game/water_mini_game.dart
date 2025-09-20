@@ -1,14 +1,14 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:plantagochi/models/drop.dart';
-import 'package:plantagochi/water_mini_game/asset_manager.dart';
-import 'package:plantagochi/water_mini_game/drop_widget.dart';
-import 'package:plantagochi/water_mini_game/game_state.dart';
-import 'package:plantagochi/water_mini_game/hud/health_bar.dart';
-import 'package:plantagochi/water_mini_game/hud/water_meter.dart';
-import 'package:plantagochi/water_mini_game/overlays/game_complete_overlay.dart';
-import 'package:plantagochi/water_mini_game/overlays/game_over_overlay.dart';
-import 'package:video_player/video_player.dart';
+import 'package:plantagochi/screens/water_mini_game/asset_manager.dart';
+import 'package:plantagochi/screens/water_mini_game/drop_widget.dart';
+import 'package:plantagochi/screens/water_mini_game/game_state.dart';
+import 'package:plantagochi/screens/water_mini_game/hud/health_bar.dart';
+import 'package:plantagochi/screens/water_mini_game/hud/water_meter.dart';
+import 'package:plantagochi/screens/water_mini_game/overlays/game_complete_overlay.dart';
+import 'package:plantagochi/screens/water_mini_game/overlays/game_over_overlay.dart';
 
 class WaterMiniGame extends StatefulWidget {
   const WaterMiniGame({super.key});
@@ -21,30 +21,26 @@ class _WaterMiniGameState extends State<WaterMiniGame>
     with SingleTickerProviderStateMixin {
   final GameState game = GameState();
   final AssetsManager assets = AssetsManager();
+  late AudioPlayer _player;
+
   bool _assetsLoaded = false;
+  bool _winSoundPlayed = false;
 
   double plantXposition = 0.4;
   late final Ticker _ticker;
   Duration _lastTick = Duration.zero;
 
-  late VideoPlayerController _videoController;
-
   @override
   void initState() {
     super.initState();
 
-    _videoController =
-        VideoPlayerController.asset('assets/images/games/moving_bg.mp4')
-          ..initialize().then((_) {
-            _videoController.setLooping(true);
-            _videoController.setVolume(0);
-            _videoController.play();
-            setState(() {});
-          });
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       assets.loadAssets(context);
-      assets.playBgm('water_mini_game_bg.mp3');
+
+      _player = AudioPlayer();
+      _player.setReleaseMode(ReleaseMode.loop);
+      _player.play(AssetSource('sfx/water_mini_game_bg.mp3'));
+
       setState(() {
         _assetsLoaded = true;
         game.reset();
@@ -103,6 +99,7 @@ class _WaterMiniGameState extends State<WaterMiniGame>
 
   @override
   void dispose() {
+    _player.dispose();
     _ticker.dispose();
     assets.dispose();
     super.dispose();
@@ -117,6 +114,11 @@ class _WaterMiniGameState extends State<WaterMiniGame>
       return const Center(child: CircularProgressIndicator());
     }
 
+    if (game.isCompleted && !_winSoundPlayed) {
+      _winSoundPlayed = true;
+      assets.playSfx('achieved.ogg');
+    }
+
     return Scaffold(
       body: GestureDetector(
         onHorizontalDragUpdate: (details) {
@@ -129,17 +131,9 @@ class _WaterMiniGameState extends State<WaterMiniGame>
         },
         child: Stack(
           children: [
-            if (_videoController.value.isInitialized)
-              Positioned.fill(
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: SizedBox(
-                    width: _videoController.value.size.width,
-                    height: _videoController.value.size.height,
-                    child: VideoPlayer(_videoController),
-                  ),
-                ),
-              ),
+            Positioned.fill(
+              child: assets.backgroundImage,
+            ),
             for (var drop in game.drops)
               DropWidget(
                 drop: drop,

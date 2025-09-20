@@ -14,14 +14,14 @@ class GameState {
     playerHealthBar = 3;
     drops.clear();
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
       drops.add(Drop(
         x: random.nextDouble() * 0.9,
         y: random.nextDouble() * -1.0,
         type: DropType.water,
       ));
     }
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
       drops.add(Drop(
         x: random.nextDouble() * 0.9,
         y: random.nextDouble() * -1.0,
