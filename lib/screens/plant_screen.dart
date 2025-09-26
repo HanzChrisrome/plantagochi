@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:plantagochi/screens/water_mini_game/splash_screen.dart';
-import 'package:plantagochi/screens/water_mini_game/water_mini_game.dart';
 import 'package:plantagochi/widgets/background_widget.dart';
 import 'package:plantagochi/widgets/plant_widget.dart';
 import 'package:plantagochi/widgets/status_bar.dart';

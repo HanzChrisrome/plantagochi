@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantagochi/screens/pet_selection/plant_selection_screen.dart';
 import 'dart:async';
 import 'package:plantagochi/screens/plant_screen.dart';
 
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const PlantScreen()),
+        MaterialPageRoute(builder: (context) => const PlantSelectionScreen()),
       );
     });
   }

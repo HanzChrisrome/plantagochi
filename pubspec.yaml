@@ -45,6 +45,7 @@ flutter:
     - assets/buttons/clear_plant_btn.png
     - assets/hud/day_indicator.png
     - assets/hud/DEFAULT PLACEHOLDER.png
+    - assets/hud/PLATFORM.png
 
     # Game Character Assets
     - assets/images/sunflower.png
@@ -54,10 +55,16 @@ flutter:
     # Cactus Character Assets
     - assets/images/cactus/cactus_moving.gif
 
+    # Plant Seeds
+    - assets/seeds/cactus.png
+    - assets/seeds/narra.png
+    - assets/seeds/sunflower.png
+
     # Cactus Background Assets
     - assets/images/cactus/Cactus (Background).png
     - assets/images/background/water_minigame_bg.png
     - assets/splash/SPLASH MINI GAME.png
+    - assets/images/background/CHARACTER PICK.png
 
     # Mini Game Character Animation Assets
     - assets/images/games/raincatcher.png
